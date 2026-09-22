@@ -97,17 +97,17 @@ The application operates as a modular, object-oriented Streamlit web application
 
 ```mermaid
 flowchart TD
-    User([User Streamlit UI]) -->|1. Selects Topic & Difficulty| Application[application.py]
-    Application -->|2. Calls generate_questions| QuizManager[QuizManager - src/utils/helpers.py]
-    QuizManager -->|3. Invokes| Generator[QuestionGenerator - src/generator/question_generator.py]
-    Generator -->|4. Formats Prompt| PromptTemplates[Prompt Templates - src/prompts/templates.py]
-    Generator -->|5. Queries LLM| GroqClient[Groq LLM Client - src/llm/groq_client.py]
-    GroqClient -->|6. API Request| GroqAPI[Groq API Services]
-    GroqAPI -->|7. JSON Response| Generator
-    Generator -->|8. Validates with Pydantic| Schemas[Schemas - src/models/question_schema.py]
-    Schemas -->|9. Parsed Object| QuizManager
-    QuizManager -->|10. Render & Grade| Application
-    Application -->|11. Export CSV| CSV[results/quiz_results_*.csv]
+    User["User Streamlit UI"] -->|"1. Selects Topic and Difficulty"| Application["application.py"]
+    Application -->|"2. Calls generate_questions"| QuizManager["QuizManager - src/utils/helpers.py"]
+    QuizManager -->|"3. Invokes"| Generator["QuestionGenerator - src/generator/question_generator.py"]
+    Generator -->|"4. Formats Prompt"| PromptTemplates["Prompt Templates - src/prompts/templates.py"]
+    Generator -->|"5. Queries LLM"| GroqClient["Groq LLM Client - src/llm/groq_client.py"]
+    GroqClient -->|"6. API Request"| GroqAPI["Groq API Services"]
+    GroqAPI -->|"7. JSON Response"| Generator
+    Generator -->|"8. Validates with Pydantic"| Schemas["Schemas - src/models/question_schema.py"]
+    Schemas -->|"9. Parsed Object"| QuizManager
+    QuizManager -->|"10. Render and Grade"| Application
+    Application -->|"11. Export CSV"| CSV["results/quiz_results_*.csv"]
 ```
 
 ### Key Execution Highlights
@@ -229,15 +229,15 @@ StudyBud AI implements an automated **CI/CD and GitOps deployment pipeline**. Co
 
 ```mermaid
 flowchart LR
-    A[Developer Push to GitHub] -->|Triggers Pipeline| B[Jenkins CI Server]
-    B -->|Stage 1: Checkout| C[GitHub Repository]
-    B -->|Stage 2: Build Image| D[Docker Build]
-    B -->|Stage 3: Push Image| E[Docker Hub Registry]
-    B -->|Stage 4: Update Tag| F[manifests/deployment.yaml]
-    B -->|Stage 5: Git Commit & Push| C
-    B -->|Stage 6 & 7: Trigger Sync| G[ArgoCD Controller]
-    G -->|Pulls updated manifest| C
-    G -->|Applies Deployment| H[Kubernetes Cluster]
+    A["Developer Push to GitHub"] -->|"Triggers Pipeline"| B["Jenkins CI Server"]
+    B -->|"Stage 1: Checkout"| C["GitHub Repository"]
+    B -->|"Stage 2: Build Image"| D["Docker Build"]
+    B -->|"Stage 3: Push Image"| E["Docker Hub Registry"]
+    B -->|"Stage 4: Update Tag"| F["manifests/deployment.yaml"]
+    B -->|"Stage 5: Git Commit and Push"| C
+    B -->|"Stage 6 and 7: Trigger Sync"| G["ArgoCD Controller"]
+    G -->|"Pulls updated manifest"| C
+    G -->|"Applies Deployment"| H["Kubernetes Cluster"]
 ```
 
 ---
